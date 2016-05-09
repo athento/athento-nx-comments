@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.athento.nuxeo.athento-nx-comments.chains"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+		point="chains">
+
+		<chain id="Document.CreateComment">
+		
+		<documentation>
+			Creates a new comment to the input document.
+			Accepts to parameters, "comment" and "user", given as string. 
+		</documentation>
+		
+			<param type="string" name="comment" />
+			<param type="string" name="user" />
+			<operation id="Context.FetchDocument" />
+			<operation id="Context.SetInputAsVar">
+				<param type="string" name="name">commentableDoc</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">comment</param>
+				<param type="string" name="value">expr:@{ChainParameters['comment']}
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">user</param>
+				<param type="string" name="value">expr:@{ChainParameters['user']}
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">cm</param>
+				<param type="string" name="value">expr:org.nuxeo.runtime.api.Framework.getService(org.nuxeo.ecm.platform.comment.api.CommentManager)
+				</param>
+			</operation>
+			<operation id="Context.RunScript">
+				<param type="string" name="script">
+				expr:cm.createComment(commentableDoc,comment,user).name
+				</param>
+			</operation>
+		</chain>
+
+	</extension>
+
+</component>
