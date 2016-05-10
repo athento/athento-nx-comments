@@ -7,7 +7,7 @@ type "string" name "User" - User that makes the comment
 
 ### Example
 
-HttpResponse<String> response = Unirest.post("http://barclaycard.athento.com/nuxeo/site/automation/Document.CreateComment")
+HttpResponse<String> response = Unirest.post("http://myhost.com/nuxeo/site/automation/Document.CreateComment")
   .header("authorization", "Basic ** Authorization **")
   .header("content-type", "application/json")
   .header("accept", "application/json+nxentity, */*")
@@ -21,7 +21,7 @@ input params: none
 
 ### Example
 
-HttpResponse<String> response = Unirest.post("http://barclaycard.athento.com/nuxeo/site/automation/Document.GetAllComments")
+HttpResponse<String> response = Unirest.post("http://myhost.com/nuxeo/site/automation/Document.GetAllComments")
   .header("authorization", "Basic ** Authorization **")
   .header("content-type", "application/json")
   .header("accept", "application/json+nxentity, */*")
@@ -36,7 +36,7 @@ type "string" name "commentToDelete" - Comment to delete, identified by its doci
 
 ### Example
 
-HttpResponse<String> response = Unirest.post("http://barclaycard.athento.com/nuxeo/site/automation/Document.DeleteComment")
+HttpResponse<String> response = Unirest.post("http://myhost.com/nuxeo/site/automation/Document.DeleteComment")
   .header("authorization", "Basic ** Authorization **")
   .header("content-type", "application/json")
   .header("accept", "application/json+nxentity, */*")
